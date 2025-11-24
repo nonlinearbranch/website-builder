@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rajat — Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Rajat — Learning and practising technology; focused on ML theory, experiments, and collaboration." />
+
+  <!-- Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --font-sans: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bg: #ffffff;
+      --fg: #000000;
+      --muted: #6b6b6b;
+      --border: #111111;
+      --radius: 18px;
+      --transition-fast: 160ms ease-out;
+    }
+
+    body.dark{
+      --bg: #000000;
+      --fg: #ffffff;
+      --muted: #b5b5b5;
+      --border: #ffffff;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:var(--font-sans);
+      background:var(--bg);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:20px;
+      transition: background 220ms var(--transition-fast), color 220ms var(--transition-fast);
+    }
+
+    .shell{
+      max-width:1100px;
+      margin:0 auto;
+      border-radius:22px;
+      border:1px solid var(--border);
+      padding:24px;
+      background:transparent;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-weight:600;
+      letter-spacing:0.02em;
+    }
+
+    /* minimal dot-star symbol */
+    .brand-mark{
+      width:42px;height:42px;display:inline-grid;place-items:center;border-radius:50%;
+      border:1px solid var(--border);
+    }
+    .brand-mark svg{
+      width:18px;height:18px;
+      stroke-width:2;
+      stroke:currentColor;
+      fill:none;
+    }
+
+    nav{display:flex;gap:12px;align-items:center;font-size:0.92rem}
+    nav a{color:var(--fg);text-decoration:none;padding:6px 10px;border-radius:999px;border:1px solid transparent;transition:all 140ms}
+    nav a:hover{border-color:var(--border);background:rgba(0,0,0,0.03);transform:translateY(-2px)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:20px;padding-top:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+    @media(min-width:900px){ .hero{grid-template-columns:1fr 360px;align-items:end} }
+
+    .hero-title{font-size:clamp(1.6rem,2.6vw,2.4rem);line-height:1.06;letter-spacing:-0.02em;font-weight:700;margin-bottom:10px}
+    .hero-sub{color:var(--muted);max-width:60ch;font-size:0.98rem}
+    .hero-links{margin-top:16px;font-size:0.95rem}
+    .hero-links a{color:var(--fg);text-decoration:none;border-bottom:1px dashed var(--border);padding-bottom:2px}
+    .hero-links a + a{margin-left:16px}
+
+    .hero-card{border-radius:14px;border:1px solid var(--border);padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+    .meta-row{display:flex;justify-content:space-between;font-size:0.85rem;color:var(--muted)}
+    .meta-row strong{color:var(--fg);font-weight:600}
+
+    /* Sections */
+    .sections{display:grid;grid-template-columns:2fr 1fr;gap:20px;padding-top:22px;padding-bottom:10px}
+    @media(max-width:900px){ .sections{grid-template-columns:1fr} }
+
+    .panel{border-radius:14px;border:1px solid var(--border);padding:12px;display:flex;flex-direction:column;gap:10px;font-size:0.92rem}
+    .section-title{text-transform:uppercase;letter-spacing:0.14em;font-size:0.72rem;color:var(--muted);margin-bottom:6px}
+
+    .focus-list{display:flex;flex-direction:column;gap:10px}
+    .focus-item{padding:10px;border-radius:10px;border:1px solid var(--border);background:transparent;font-size:0.92rem}
+
+    footer{border-top:1px solid var(--border);padding-top:12px;margin-top:10px;display:flex;justify-content:space-between;flex-wrap:wrap;color:var(--muted);font-size:0.82rem}
+    .footer-links{display:flex;gap:10px;align-items:center}
+
+    .contact a{color:var(--fg);text-decoration:none;border-bottom:1px dashed transparent;transition:border-color 140ms}
+    .contact a:hover{border-color:var(--border)}
+
+    /* Top-right dark toggle */
+    .dark-toggle{
+      position:fixed;top:18px;right:18px;z-index:9999;padding:8px 12px;font-size:0.80rem;text-transform:uppercase;
+      border:1px solid var(--border);background:transparent;color:var(--fg);border-radius:999px;cursor:pointer;
+      opacity:0.92;backdrop-filter:blur(4px);transition:transform 120ms,var(--transition-fast);
+    }
+    .dark-toggle:hover{transform:translateY(-2px)}
+    .dark-toggle:focus{outline:3px solid rgba(0,0,0,0.06);outline-offset:3px}
+
+    @media(max-width:520px){
+      .shell{padding:16px}
+      .brand-mark{width:34px;height:34px}
+      .hero{gap:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <!-- dot-star minimal mark -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="2" />
+            <line x1="12" y1="4" x2="12" y2="8" />
+            <line x1="12" y1="16" x2="12" y2="20" />
+            <line x1="4" y1="12" x2="8" y2="12" />
+            <line x1="16" y1="12" x2="20" y2="12" />
+            <line x1="6.5" y1="6.5" x2="9" y2="9" />
+            <line x1="15" y1="15" x2="17.5" y2="17.5" />
+            <line x1="6.5" y1="17.5" x2="9" y2="15" />
+            <line x1="15" y1="9" x2="17.5" y2="6.5" />
+          </svg>
+        </div>
+
+        <div>
+          <div style="font-size:1.02rem">Rajat</div>
+          <div style="font-size:0.78rem;color:var(--muted);font-weight:500">Learner · Technologist</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div>
+          <h1 id="hero-heading" class="hero-title">
+            Exploring the edges of technology.<br/>
+            Small experiments, clear notes, and open collaboration.
+          </h1>
+
+          <p class="hero-sub">
+            I study at DTU Delhi and spend most of my time understanding ML concepts, building small prototypes, and connecting with people who like thinking about future tech.
+          </p>
+
+          <div class="hero-links" aria-hidden="true">
+            <a href="#what">What I’m working on</a>
+            <a href="#contact">Say hello</a>
+          </div>
+        </div>
+
+        <aside>
+          <div class="hero-card" aria-hidden="true">
+            <div class="meta-row">
+              <span>Current focus</span>
+              <strong>ML theory · Experiments · Competitive programming</strong>
+            </div>
+
+            <div class="meta-row">
+              <span>Practice</span>
+              <strong>Clear notes and simple self-contained examples</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="sections">
+        <div>
+          <div class="section-title">What I’m working on</div>
+          <div class="panel" id="what">
+            <div class="focus-list">
+              <div class="focus-item">Reading research papers and strengthening fundamentals in ML theory.</div>
+              <div class="focus-item">Trying out small experiments and documenting ideas clearly.</div>
+              <div class="focus-item">Collaborating on short projects and basic prototypes with peers.</div>
+              <div class="focus-item">Practising competitive programming to stay sharp in problem solving.</div>
+              <div class="focus-item">Figuring out how small personal projects can slowly grow into useful things.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="section-title">Contact</div>
+          <div class="panel" id="contact">
+            <div style="font-size:0.92rem">
+              Email: <a class="contact" href="mailto:rajat.tech@protonmail.com">rajat.tech@protonmail.com</a><br/>
+              LinkedIn: <a class="contact" href="https://linkedin.com/in/the-rajat/" target="_blank" rel="noopener noreferrer">linkedin.com/in/the-rajat/</a>
+            </div>
+            <div style="margin-top:8px;color:var(--muted);font-size:0.86rem">
+              Open to discussions on ML theory, competitive programming, and small experiments.
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <div>© Rajat</div>
+      <div class="footer-links">
+        <a href="mailto:rajat.tech@protonmail.com">Email</a>
+        <a href="https://linkedin.com/in/the-rajat/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- dark-mode toggle -->
+  <button class="dark-toggle" aria-pressed="false" aria-label="Toggle dark mode">
+    <span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--fg)"></span>
+    Dark
+  </button>
+
+  <script>
+    (function () {
+      const btn = document.querySelector('.dark-toggle');
+      const STORAGE_KEY = 'rajat_monochrome_theme_v1';
+
+      function applyMode(mode){
+        if(mode === 'dark'){
+          document.body.classList.add('dark');
+          btn.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--fg)"></span>Light';
+        } else {
+          document.body.classList.remove('dark');
+          btn.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;background:var(--fg)"></span>Dark';
+        }
+      }
+
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if(saved === 'dark' || saved === 'light'){
+          applyMode(saved);
+        } else {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          applyMode(prefersDark ? 'dark' : 'light');
+        }
+      } catch(e){
+        applyMode('light');
+      }
+
+      btn.addEventListener('click', () => {
+        const isDark = document.body.classList.contains('dark');
+        const newMode = isDark ? 'light' : 'dark';
+        applyMode(newMode);
+        try{ localStorage.setItem(STORAGE_KEY, newMode); }catch(e){}
+      });
+    })();
+  </script>
+</body>
+</html>
